@@ -35,8 +35,14 @@ npm run build && npm start
 - **Desktop**: double-click icons (single tap on touch) to open windows. Drag by the title bar,
   double-click the title bar to maximize. Taskbar tabs focus/minimize. Speaker icon toggles click
   sounds (synthesized, on by default).
-- **Contact form** posts to `app/api/superchat/route.ts`. Without env vars it only validates and
-  logs. To store messages in Supabase, set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` and create:
+- **Contact form** posts to `app/api/superchat/route.ts`, which emails each message to you through
+  [Resend](https://resend.com). In Vercel, open the project's Settings, then Environment Variables, and add:
+  - `RESEND_API_KEY`: an API key from resend.com (free plan)
+  - `CONTACT_TO_EMAIL`: the email you signed up to Resend with (the shared sender can only deliver there)
+
+  Then redeploy. Replying to a message email replies to the visitor. Without these variables the form
+  only logs in development and shows a "not set up yet" error in production. To also store messages in
+  Supabase, set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` and create:
 
 ```sql
 create table contact_messages (
