@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #4d21cb;
+  --purple: #7b59d2;
+  --face: #edd8ef;
+  --light: #fcf1fc;
+  --paper: #fdf6fd;
+  --mint: #93ecdf;
+  --pink: #ff77a8;
+  --hot: #f096dc;
+  --cyan: #70e6ff;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #f7e1f8;
+  color: var(--ink);
+  font-family: var(--font-dot), monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Pixel art never gets blurred */
+img,
+svg.pixel {
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+}
+
+/* NSO-style stair-step wallpaper, drawn as an inline SVG tile */
+.wallpaper {
+  background-color: #f8e2f8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' shape-rendering='crispEdges'%3E%3Cg fill='%23bfe8f6'%3E%3Crect x='0' y='12' width='8' height='4'/%3E%3Crect x='8' y='8' width='4' height='8'/%3E%3Crect x='12' y='8' width='8' height='4'/%3E%3Crect x='20' y='4' width='4' height='8'/%3E%3Crect x='32' y='44' width='8' height='4'/%3E%3Crect x='40' y='40' width='4' height='8'/%3E%3Crect x='44' y='40' width='8' height='4'/%3E%3Crect x='52' y='36' width='4' height='8'/%3E%3C/g%3E%3Cg fill='%23fdf3fd'%3E%3Crect x='0' y='16' width='8' height='4'/%3E%3Crect x='12' y='12' width='8' height='4'/%3E%3Crect x='32' y='48' width='8' height='4'/%3E%3Crect x='44' y='44' width='8' height='4'/%3E%3C/g%3E%3Cg fill='%23ecd2f2'%3E%3Crect x='24' y='28' width='4' height='4'/%3E%3Crect x='56' y='60' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 64px 64px;
+}
+
+/* CRT scanlines layered over the whole desktop */
+.scanlines::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(77, 33, 203, 0.035) 0px,
+    rgba(77, 33, 203, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@layer components {
+  /* Window frame: purple pixel border with the mint glow from the game */
+  .nso-window {
+    @apply flex flex-col;
+    background: var(--face);
+    border: 2px solid var(--ink);
+    box-shadow:
+      0 0 0 2px var(--mint),
+      0 0 0 4px var(--purple),
+      6px 6px 0 4px rgba(123, 89, 210, 0.25);
+  }
+  .nso-titlebar {
+    @apply flex h-7 shrink-0 select-none items-center gap-2 px-2;
+    background: #f0d3f1;
+    border-bottom: 2px solid var(--ink);
+  }
+  .nso-titlebar.inactive {
+    background: #f6e6f6;
+  }
+  .nso-titlebtn {
+    @apply grid h-[18px] w-[18px] place-items-center bg-nso-light text-nso-ink;
+    border: 2px solid var(--ink);
+  }
+  .nso-titlebtn:hover {
+    background: #fff;
+  }
+  .nso-titlebtn:active {
+    background: var(--lav2, #dcb8f8);
+  }
+  .nso-body {
+    @apply relative min-h-0 flex-1 overflow-auto;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    margin: 4px;
+  }
+  .nso-footer {
+    @apply flex h-3 shrink-0 items-center gap-[2px] px-1;
+    background: var(--mint);
+  }
+
+  /* Raised pixel button */
+  .px-btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-1.5 text-nso-ink transition-transform;
+    background: #f6dcf6;
+    border: 2px solid var(--ink);
+    box-shadow: inset -2px -2px 0 var(--purple), inset 2px 2px 0 #fff;
+  }
+  .px-btn:hover {
+    background: #fbe8fb;
+  }
+  .px-btn:active {
+    box-shadow: inset 2px 2px 0 var(--purple), inset -2px -2px 0 #fff;
+    transform: translateY(1px);
+  }
+  .px-btn:focus-visible,
+  .nso-titlebtn:focus-visible,
+  .desk-icon:focus-visible,
+  .tb-tab:focus-visible {
+    outline: 2px dashed var(--pink);
+    outline-offset: 2px;
+  }
+
+  .px-input {
+    @apply w-full bg-white px-2 py-1.5 font-dot text-nso-ink placeholder:text-nso-purple/50;
+    border: 2px solid var(--ink);
+    box-shadow: inset 2px 2px 0 var(--face);
+  }
+  .px-input:focus {
+    outline: none;
+    box-shadow: inset 2px 2px 0 var(--face), 0 0 0 2px var(--pink);
+  }
+
+  /* Plain-panel version of the window frame, for Normal View */
+  .nso-panel {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 0 0 0 2px var(--mint), 0 0 0 4px var(--purple);
+  }
+
+  .tag {
+    @apply inline-block px-2 py-0.5 text-xs;
+    background: var(--face);
+    border: 1px solid var(--purple);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes livepulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+.live-pulse {
+  animation: livepulse 1.2s steps(3) infinite;
+}
+
+@keyframes splashfill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.splash-fill {
+  animation: splashfill 0.9s steps(20) forwards;
+}
+
+@keyframes glitch {
+  0%,
+  92%,
+  100% {
+    transform: translate(0);
+    text-shadow: none;
+  }
+  93% {
+    transform: translate(-2px, 1px);
+    text-shadow: 2px 0 var(--cyan), -2px 0 var(--pink);
+  }
+  96% {
+    transform: translate(2px, -1px);
+    text-shadow: -2px 0 var(--cyan), 2px 0 var(--pink);
+  }
+}
+.glitch {
+  animation: glitch 4s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blink,
+  .live-pulse,
+  .glitch {
+    animation: none;
+  }
+  .splash-fill {
+    animation: none;
+    width: 100%;
+  }
+}
+
+/* Thin pixel scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple) var(--face);
+}
