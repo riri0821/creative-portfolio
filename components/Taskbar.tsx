@@ -8,7 +8,7 @@ import { blip } from "@/lib/sound";
 import PixelIcon, { type IconName } from "./PixelIcon";
 
 const ORDER: WindowId[] = ["stream", "projects", "tweeter", "expertise", "contact", "taskmgr", "guide"];
-const MENU_ICON: Partial<Record<WindowId, IconName>> = { stream: "stream", projects: "folder", tweeter: "tweeter", expertise: "expertise", contact: "contact" };
+const MENU_ICON: Partial<Record<WindowId, IconName>> = { stream: "stream", projects: "folder", tweeter: "tweeter", expertise: "expertise", contact: "contact", guide: "guide" };
 
 function dayNumber() {
   const start = new Date(profile.startedOn).getTime();

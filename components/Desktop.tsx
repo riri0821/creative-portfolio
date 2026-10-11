@@ -21,6 +21,7 @@ const ICONS: { id: WindowId; icon: IconName; label: string }[] = [
   { id: "expertise", icon: "expertise", label: "Expertise" },
   { id: "contact", icon: "contact", label: "Contact Me" },
   { id: "taskmgr", icon: "taskmgr", label: "My Achievements" },
+  { id: "guide", icon: "guide", label: "Guide" },
 ];
 
 type Layout = Record<WindowId, { x: number; y: number; w: number; h: number }>;
