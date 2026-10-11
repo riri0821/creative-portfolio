@@ -168,7 +168,7 @@ export const posts: Post[] = [
 export const bioHighlights = [
   { label: "Stack", text: "PERN (PostgreSQL, Express, React, Node.js), JavaScript, Python" },
   { label: "Education", text: "BS Information Systems, UST (10-year Thomasian)" },
-  { label: "Operations", text: "6 Years, Retail Sales to Operations and Business Systems Associate" },
+  { label: "Operations", text: "6 Years, Sales Data Analyst to Operations and Business Systems Associate" },
   { label: "Enrollment", text: "UTokyo Matsuo-Iwasawa Lab (GCI World), AI Systems and Data Engineering" },
   { label: "Upskilling", text: "Cybersecurity and Web Vulnerability Assessment (TryHackMe)" },
   { label: "Game Dev", text: "Luau and Roblox Studio" },
