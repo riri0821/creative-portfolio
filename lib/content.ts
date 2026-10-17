@@ -16,12 +16,13 @@ export const profile = {
   intro: [
     "Hi! I'm Tamara!",
     "I'm an Information Systems student at UST.",
+    "I'm also studying AI & Data Science at UTokyo.",
     "I build full-stack apps with the PERN stack.",
     "Right now I'm leveling up in cybersecurity.",
     "Check out my projects, and say hi in Contact!",
   ],
   about:
-    "I'm an Information Systems student at the University of Santo Tomas. I have 6 years of hands-on experience and skills in PERN stack development, JavaScript, Python, and game development, and I'm self-studying cybersecurity. I'm looking for opportunities where I can apply my experience to systems work.",
+    "I'm an Information Systems student at the University of Santo Tomas, and I'm currently taking AI and Data Science at the University of Tokyo's Matsuo-Iwasawa Lab. I have 6 years of hands-on experience and skills in PERN stack development, JavaScript, Python, and game development, and I'm self-studying cybersecurity. I'm looking for opportunities where I can apply my experience to systems work.",
 };
 
 export const links = {
