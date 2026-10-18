@@ -15,9 +15,11 @@ export default function App() {
 
   // Every visit starts on the boot screen while the site's images load.
   // Phones continue to Normal View by themselves; wider screens pick a view.
+  // A link ending in ?view=normal (for formal applications) skips straight to Normal View.
   useEffect(() => {
     setNarrow(window.matchMedia(MOBILE).matches);
-    setView("boot");
+    const linked = new URLSearchParams(window.location.search).get("view");
+    setView(linked === "normal" ? "normal" : "boot");
   }, [setView]);
 
   // Resizing a desktop browser below 768px switches to Normal View live.
